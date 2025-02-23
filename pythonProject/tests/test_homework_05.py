@@ -43,7 +43,6 @@ def test_dark_theme_by_time_and_user_choice():
 
     assert is_dark_theme is True
 
-
 def test_find_suitable_user():
     """
     Найдите нужного пользователя по условиям в списке пользователей
@@ -84,7 +83,7 @@ def test_find_suitable_user():
 def simple_read_function(my_func, *args):
     func_name = my_func.__name__.replace('_', ' ').title()
     func_args = ', '.join(args)
-    return (f"{func_name} [{func_args}]")
+    return f"{func_name} [{func_args}]"
 
 
 def test_readable_function():
@@ -96,13 +95,15 @@ def test_readable_function():
 def open_browser(browser_name):
     actual_result = simple_read_function(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
+    print("\n" + actual_result)
 
 
 def go_to_companyname_homepage(page_url):
     actual_result = simple_read_function(go_to_companyname_homepage, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
-
+    print(actual_result)
 
 def find_registration_button_on_login_page(page_url, button_text):
     actual_result = simple_read_function(find_registration_button_on_login_page, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
+    print(actual_result)
