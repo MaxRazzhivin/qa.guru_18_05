@@ -161,3 +161,80 @@ for i, city in enumerate(cities):
 
 
 ```
+
+## Функции functions - именованный блок кода, который мы можем вызвать
+
+```bash
+def my_func():
+    print("Мы вызвали функцию")
+    
+my_func()
+my_func()
+my_func()
+```
+
+```bash
+Функция с позиционными аргументами: 
+
+def sum_numbers(a: int,b: int):
+    print(a + b)
+    
+sum_numbers(5, 15)
+sum_numbers(20, 30)
+sum_numbers(14, 17)
+
+Если мы хотим использовать дальше результат функции, то используем return: 
+
+def sum_numbers(a: int,b: int):
+    return a + b
+
+И можем присвоить результат переменной для использования в дальнейшем:
+
+n = sum_numbers(10, 5)
+```
+
+```bash
+Функция с именованными аргументами: 
+
+sum_numbers(b=5, a=15)
+```
+
+
+```bash
+Функция с аргументами по-умолчаню, который в дальнейшем можно или не указывать вовсе или заменить значение
+
+def multiply(n, mult: int = 2):
+    print(n * mult)
+    
+multiply(10)
+multiply(10, mult=5)
+
+```
+
+```bash
+Возвращаем из функции несколько значений:
+
+def return_tuple():
+    return 1,2,3 
+    
+t = return_tuple()
+print(t) // - вернет нам (1, 2, 3)
+
+Либо мы можем сразу разложить по элементам:
+
+t1, t2, t3 = return_tuple()
+print(t1, t2, t3) // вернет нам 1 2 3
+
+
+Если мы укажем t1, t2 = return_tuple(), это вызовет ошибку Value Error: too many values to unpack (expected 2)
+
+Чтобы ее избежать, можно сделать с.о.:
+
+t1, *t2 = return_tuple()
+print(t1, t2) // вернет нам 1, [2, 3]. Он помещает в первое значение его так же, а все остальные списком распакуется во второе t2
+
+либо 
+
+t1, t2, *t3 = return_tuple()
+print(t1, t2, t3) // вернет 1 2 [3]
+```
