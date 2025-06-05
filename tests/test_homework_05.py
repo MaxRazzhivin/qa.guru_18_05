@@ -57,12 +57,12 @@ def test_find_suitable_user():
 
     # TODO найдите пользователя с именем "Olga"
 
-    suitable_users = next((user for user in users if user["name"] == "Olga"), None)
-    assert suitable_users == {"name": "Olga", "age": 45}
+    suitable_user = next((user for user in users if user["name"] == "Olga"), None)
+
+    assert suitable_user == {"name": "Olga", "age": 45}
 
     # TODO найдите всех пользователей младше 20 лет
     suitable_users = list(user for user in users if user["age"] <= 20)
-
     assert suitable_users == [
         {"name": "Stanislav", "age": 15},
         {"name": "Maria", "age": 18},

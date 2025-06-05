@@ -342,6 +342,96 @@ users.sort(key = lambda user: user['age'])
 
 pprint(users) // получим такой же ответ, как у функции выше 
 
+```
+
+## Про функции next() и filter()
+
+```bash
+Функция next() в Python используется для получения следующего элемента из итератора. 
+Если итератор исчерпан, она может вернуть значение по умолчанию, если оно указано, или вызвать исключение StopIteration, 
+если значение по умолчанию не задано.
+
+next(iterator[, default])
+
+• iterator: Итератор, из которого вы хотите получить следующий элемент.
+
+• default: (необязательный) Значение, которое будет возвращено, если итератор исчерпан. Если не указано, будет вызвано исключение StopIteration.
+
+numbers = iter([1, 2, 3])
+print(next(numbers))  # Вывод: 1
+print(next(numbers))  # Вывод: 2
+print(next(numbers))  # Вывод: 3
+
+# Следующий вызов вызовет исключение StopIteration
+# print(next(numbers))  # Uncommenting this will raise StopIteration
+
+numbers = iter([1, 2, 3])
+print(next(numbers, 'Конец'))  # Вывод: 1
+print(next(numbers, 'Конец'))  # Вывод: 2
+print(next(numbers, 'Конец'))  # Вывод: 3
+print(next(numbers, 'Конец'))  # Вывод: Конец (поскольку итератор исчерпан)
 
 
+users = [
+    {"name": "Oleg", "age": 32},
+    {"name": "Sergey", "age": 24},
+    {"name": "Stanislav", "age": 15},
+    {"name": "Olga", "age": 45},
+]
+
+# Находим первого пользователя с именем "Olga"
+first_olga = next((user for user in users if user["name"] == "Olga"), None)
+
+print(first_olga)  # Вывод: {'name': 'Olga', 'age': 45}
+
+```
+
+```bash
+Функция filter() в Python используется для фильтрации элементов из итерируемого объекта (например, списка, кортежа и т.д.) 
+на основе заданного условия. Она принимает два аргумента: функцию и итерируемый объект. Функция должна возвращать True или False 
+для каждого элемента, и filter() вернет новый итератор, содержащий только те элементы, для которых функция вернула True.
+
+filter(function, iterable)
+
+• function: Функция, которая принимает один аргумент и возвращает True или False.
+
+• iterable: Итерируемый объект (например, список, кортеж, строка и т.д.), элементы которого будут проверяться.
+
+Фильтрация четных чисел из списка:
+
+# Определяем функцию для проверки четности
+def is_even(n):
+    return n % 2 == 0
+
+numbers = [1, 2, 3, 4, 5, 6]
+even_numbers = filter(is_even, numbers)
+
+# Преобразуем результат в список и выводим
+print(list(even_numbers))  # Вывод: [2, 4, 6]
+
+
+Использование лямбда-функции:
+
+numbers = [1, 2, 3, 4, 5, 6]
+even_numbers = filter(lambda n: n % 2 == 0, numbers)
+
+print(list(even_numbers))  # Вывод: [2, 4, 6]
+
+
+Фильтрация строк по длине:
+
+words = ["apple", "banana", "cherry", "date", "fig", "grape"]
+# Фильтруем слова длиной больше 4 символов
+long_words = filter(lambda word: len(word) > 4, words)
+
+print(list(long_words))  # Вывод: ['apple', 'banana', 'cherry']
+
+
+Фильтрация отрицательных чисел:
+
+numbers = [-10, -5, 0, 5, 10]
+# Фильтруем отрицательные числа
+negative_numbers = filter(lambda x: x < 0, numbers)
+
+print(list(negative_numbers))  # Вывод: [-10, -5]
 ```
