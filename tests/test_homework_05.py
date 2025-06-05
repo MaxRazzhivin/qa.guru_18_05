@@ -62,12 +62,18 @@ def test_find_suitable_user():
     assert suitable_user == {"name": "Olga", "age": 45}
 
     # TODO найдите всех пользователей младше 20 лет
-    suitable_users = list(user for user in users if user["age"] <= 20)
+    suitable_users = [user for user in users if user["age"] <= 20]
     assert suitable_users == [
         {"name": "Stanislav", "age": 15},
         {"name": "Maria", "age": 18},
     ]
 
+    # либо решение через filter и lambda
+    # suitable_users = list(filter(lambda user: user['age'] < 20, users))
+    # assert suitable_users == [
+    #         {"name": "Stanislav", "age": 15},
+    #         {"name": "Maria", "age": 18},
+    #     ]
 
 # Сделайте функцию, которая будет печатать
 # читаемое имя переданной ей функции и значений аргументов.
