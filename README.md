@@ -288,6 +288,26 @@ custom_named_print(1, 2, 3, 4, 5, end = '!\n', sep = ' | ')
 в kwargs будет {'end': '!\n', 'sep': ' | '}
 ```
 
+```bash
+Еще примеры *args и **kwargs:
+
+>>> def sum_numbers(*args): # *args - это кортеж, который содержит все переданные аргументы
+...     return sum(args)
+
+>>> print(sum_numbers(1, 2, 3, 4, 5)) # Функция принимает любое количество аргументов
+15
+
+Функция может принимать любые объекты в качестве аргументов и возвращать любые объекты:
+
+
+>>> def get_user_info(name, age, city, *args, **kwargs):
+...     return name, age, city, args, kwargs
+
+>>> name, age, city, args, kwargs = get_user_info("Oleg", 32, "Moscow", "Python", "QA", "Automation", experience="5 years", salary="100k")
+>>> print(name, age, city, args, kwargs)
+Oleg 32 Moscow ('Python', 'QA', 'Automation') {'experience': '5 years', 'salary': '100k'}
+```
+
 ## Область видимости - у функций она другая, чем у условий и циклов
 
 ```bash
